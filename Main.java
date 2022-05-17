@@ -83,33 +83,59 @@ public class Main implements ActionListener { // Create a the Main class that wi
     @Override
     public void actionPerformed(ActionEvent a) { // Events for the ActionListener button will run here
 
-        try { // Run this portion of the program if 'credentials.txt' can be located
-            String user = userText.getText(); // Get the value of the user's input within the username text box
-            String password = passwordText.getText(); // Get the value of the user's password within the password text box
-            HashMap<String, String> info = new HashMap<String, String>(); // Create a hashmap to store key/value pairings of the login info for previous users
-            File file = new File("finalproject/credentials.txt"); // Create the file to store the login info for the users
-            Scanner scan = new Scanner(file); // Use the scanner to read into the file that was created
-            String line = ""; // Used to take pull the data from the text file and turn it into usable data
+        // try { // Run this portion of the program if 'credentials.txt' can be located
+        //     String user = userText.getText(); // Get the value of the user's input within the username text box
+        //     String password = passwordText.getText(); // Get the value of the user's password within the password text box
+        //     HashMap<String, String> info = new HashMap<String, String>(); // Create a hashmap to store key/value pairings of the login info for previous users
+        //     File file = new File("finalproject/credentials.txt"); // Create the file to store the login info for the users
+        //     Scanner scan = new Scanner(file); // Use the scanner to read into the file that was created
+        //     String line = ""; // Used to take pull the data from the text file and turn it into usable data
 
-            while (scan.hasNextLine()) { // Populate the hashmap - Will continue running until all lines in the text file have been read
-                line = scan.nextLine(); // Pull the data from one line of the text file
-                String [] credentials = line.split(","); // Remove the comma from the line pulled
-                info.put(credentials[0], credentials[1]); // Store the first string as a key, and the second string as a value within the hashmap
-                // The process will repeat until all lines have been read by the scanner
+        //     while (scan.hasNextLine()) { // Populate the hashmap - Will continue running until all lines in the text file have been read
+        //         line = scan.nextLine(); // Pull the data from one line of the text file
+        //         String [] credentials = line.split(","); // Remove the comma from the line pulled
+        //         info.put(credentials[0], credentials[1]); // Store the first string as a key, and the second string as a value within the hashmap
+        //         // The process will repeat until all lines have been read by the scanner
+        //     }
+
+        //     if (info.containsKey(user)) { // Match to see if the user entered in a correct username
+        //         if (password.equals(info.get(user))) { // If the user entered in a correct username, check to see if their password matches the value stored with the key that they successfully matched with
+        //             System.out.println("Login Successfull");
+        //             JOptionPane.showMessageDialog(null, "Login Successfull", "Success", JOptionPane.INFORMATION_MESSAGE); // Output a successfull login
+        //         } else { // If the user enters a correct username but an incorrect password, output a failed login attempt
+        //             System.out.println("Invalid username or password");
+        //             userText.setText(""); // Clear the fields upon an invalid login
+        //             passwordText.setText("");
+        //             JOptionPane.showMessageDialog(null, "Invalid username or password", "Error", JOptionPane.ERROR_MESSAGE);
+        //         }
+
+        //     } else { // If the user entered in an invalid username or password, output a failed login attempt
+        //         System.out.println("Invalid username or password");
+        //         userText.setText(""); // Clear the fields upon an invalid login
+        //         passwordText.setText("");
+        //         JOptionPane.showMessageDialog(null, "Invalid username or password", "Error", JOptionPane.ERROR_MESSAGE);
+        //     }
+
+        try {
+            String user = userText.getText();
+            String password = passwordText.getText();
+            HashMap<String, String> info = new HashMap<String, String>();
+            File file = new File("finalproject/credentials.txt");
+            Scanner scan = new Scanner(file);
+            String[] credentials;
+            String line;
+
+            while (scan.hasNextLine()) {
+                line = scan.nextLine();
+                credentials = line.split(",");
+                info.put(credentials[0], credentials[1]);
+                System.out.println(info);
             }
 
-            if (info.containsKey(user)) { // Match to see if the user entered in a correct username
-                if (password.equals(info.get(user))) { // If the user entered in a correct username, check to see if their password matches the value stored with the key that they successfully matched with
-                    System.out.println("Login Successfull");
-                    JOptionPane.showMessageDialog(null, "Login Successfull", "Success", JOptionPane.INFORMATION_MESSAGE); // Output a successfull login
-                } else { // If the user enters a correct username but an incorrect password, output a failed login attempt
-                    System.out.println("Invalid username or password");
-                    userText.setText(""); // Clear the fields upon an invalid login
-                    passwordText.setText("");
-                    JOptionPane.showMessageDialog(null, "Invalid username or password", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-
-            } else { // If the user entered in an invalid username or password, output a failed login attempt
+            if ((info.containsKey(user)) && (password.equals(info.get(user)))) {
+                System.out.println("Login Successfull");
+                JOptionPane.showMessageDialog(null, "Login Successfull", "Success", JOptionPane.INFORMATION_MESSAGE); // Output a successfull login
+            } else {
                 System.out.println("Invalid username or password");
                 userText.setText(""); // Clear the fields upon an invalid login
                 passwordText.setText("");
