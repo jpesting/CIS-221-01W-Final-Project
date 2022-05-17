@@ -11,7 +11,7 @@ import java.io.IOException; // Throw an error if the file cannot be found, if th
 
 import java.util.Scanner; // Used to read the file that contains user login information
 import java.util.HashMap; // Used to store user login info as key/value pairings
-
+import java.awt.Color;
 import java.awt.event.ActionEvent; // Used to run an event upon a user's action
 import java.awt.event.ActionListener; // Used to identify user user's action
 
@@ -44,29 +44,33 @@ public class Main implements ActionListener { // Create a the Main class that wi
         JFrame frame = new JFrame(); // Create a new object from the JFrame class and name it "frame"
         JPanel panel = new JPanel(); // Create a new object of the JPanel class and name it "panel"
 
-        frame.setSize(600, 450); // Create dimensions for JFrame frame
+        frame.setTitle("Login Page");
+        frame.setLocation(750, 300);
+        frame.setSize(400, 200); // Create dimensions for JFrame frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Allow the frame and program to be closed on command
-        frame.add(panel); // Add the panel to the frame
+        frame.add(panel); // Add the panel to the frame - Will cover the entire width and height of the screen
         panel.setLayout(null); // Create the layout of the panel
 
-        userLabel = new JLabel("User"); // This label will be used to identify the user
-        userLabel.setBounds(10, 20, 80, 25); // Set the dimensions of the label
+        userLabel = new JLabel("Username"); // This label will be used to identify the user
+        userLabel.setBounds(100, 5, 70, 20); // Set the dimensions of the label
         panel.add(userLabel); // Add the label to the frame
 
         userText = new JTextField(); // This text field will be used to enter the user's ID
-        userText.setBounds(100, 20, 165, 25); // Set the dimensions of the text field
+        userText.setBounds(100, 25, 195, 25); // Set the dimensions of the text field
         panel.add(userText); // Add the Text box to the panel
 
         passwordLabel = new JLabel("Password"); // This label will be used to identify the user's password
-        passwordLabel.setBounds(10, 50, 80, 25); // Set the dimensions of the label
+        passwordLabel.setBounds(100, 55, 70, 20); // Set the dimensions of the label
         panel.add(passwordLabel); // Add the label to the panel
 
         passwordText = new JPasswordField(); // This password field will be used to enter the user's password
-        passwordText.setBounds(100, 50, 165, 25); // Set the dimensions of the password field
+        passwordText.setBounds(100, 75, 195, 25); // Set the dimensions of the password field
         panel.add(passwordText); // Add the password field to the panel
 
         button = new JButton("Login"); // This button will be used to submit the information
-        button.setBounds(10, 80, 80, 25); // Set the dimensions of the button
+        button.setBounds(100, 110, 90, 25); // Set the dimensions of the button
+        button.setBackground(Color.BLACK);
+        button.setForeground(Color.WHITE);
         button.addActionListener(new Main()); // Add action to the button using an ActionListener - Pass through a new object for the GUI
                                               // Must take in a parameter of ActionListener - which is also an object
                                               // Main() is not an ActionListener object - Implement ActionListener to the Main class
